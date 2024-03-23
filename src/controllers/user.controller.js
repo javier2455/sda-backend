@@ -2,6 +2,7 @@ import { validateUser } from '../schemas/user.schema.js'
 import { UserModel } from '../models/user.model.js'
 
 export class UserController {
+  // done
   static getAll = async (req, res) => {
     try {
       const allUsers = await UserModel.getAll()
@@ -17,6 +18,7 @@ export class UserController {
       res.status(500).json({ message: [error.message] })
     }
   }
+  // done
 
   static getById = async (req, res) => {
     try {
@@ -34,6 +36,7 @@ export class UserController {
     }
   }
 
+  // done
   static create = async (req, res) => {
     try {
       const validatedFields = validateUser(req.body)

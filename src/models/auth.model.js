@@ -1,16 +1,17 @@
 import bcrypt from 'bcryptjs'
-import { pool } from '../db.js'
-import { USER_SCRIPTS } from '../scripts/user.scripts.js'
+import { prisma } from '../libs/prisma.js'
 
 export class AuthModel {
   static login = async ({ user }) => {
     try {
-      const { usuario, contraseña } = user
+      const { username, password } = user
 
-      const userFound = await pool.query(USER_SCRIPTS.GET_USER_BY_USERNAME, [
-        usuario
-      ])
-      if (userFound.rowCount === 0) {
+      const userFound = await prisma.users.findFirst({
+        where: {
+          username
+        }
+      })
+      if (!userFound) {
         return {
           error: true,
           message: 'Usuario no encontrado'
@@ -24,8 +25,8 @@ export class AuthModel {
       // }
 
       const correctPassword = await bcrypt.compare(
-        contraseña,
-        userFound.rows[0].contrasenna
+        password,
+        userFound.password
       )
       if (!correctPassword) {
         return {
@@ -34,9 +35,11 @@ export class AuthModel {
         }
       }
 
-      return userFound.rows[0]
+      return userFound
     } catch (error) {
       return { error: true, message: error.message }
+    } finally {
+      await prisma.$disconnect()
     }
   }
 
