@@ -5,6 +5,7 @@ import { createAccessToken } from '../utils/jwt.js'
 export class AuthController {
   static login = async (req, res) => {
     try {
+      console.log(req.body)
       const validatedFields = validateAuthentication(req.body)
 
       if (validatedFields.error) {
@@ -27,6 +28,7 @@ export class AuthController {
 
       return res.status(200).json({
         message: 'Credenciales correctas',
+        description: 'Usted a accedido al sistema de documentación de apis',
         data: userFound
       })
     } catch (error) {
