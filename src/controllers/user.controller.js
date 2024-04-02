@@ -48,13 +48,11 @@ export class UserController {
       if (userCreated.error) {
         res.status(430).json({ message: [userCreated.message] })
       } else {
-        res
-          .status(201)
-          .json({
-            message: 'Usuario creado',
-            description: 'EL usuario fue creado satisfactoriamente',
-            data: userCreated
-          })
+        res.status(201).json({
+          message: 'Usuario creado',
+          description: 'EL usuario fue creado satisfactoriamente',
+          data: userCreated
+        })
       }
     } catch (error) {
       console.log(error.message)
@@ -80,7 +78,13 @@ export class UserController {
       if (userUpdated.error) {
         return res.status(404).json({ message: [userUpdated.message] })
       } else {
-        res.status(200).json({ message: 'User updated', data: userUpdated })
+        res
+          .status(200)
+          .json({
+            message: 'Usuario editado',
+            description: 'Usuario editado satisfactoriamente',
+            data: userUpdated
+          })
       }
     } catch (error) {
       res.status(500).json({ message: [error.message] })

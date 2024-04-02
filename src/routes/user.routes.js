@@ -14,7 +14,7 @@ userRouter.get(
   UserController.getAll
 )
 userRouter.get(
-  '/get_user/:id/',
+  '/get_user/:id/:token',
   authRequired,
   getUserRole,
   roleValidation,
@@ -28,7 +28,7 @@ userRouter.post(
   UserController.create
 )
 userRouter.patch(
-  '/update_user/:id',
+  '/update_user/:id/:token',
   authRequired,
   getUserRole,
   roleValidation,
