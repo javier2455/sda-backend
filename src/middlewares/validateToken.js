@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 
 export const authRequired = (req, res, next) => {
-  const { token } = req.body
+  const { token } = req.params
   if (!token) {
     return res.status(401).json({ message: 'Sin token, autorización denegada' })
   }

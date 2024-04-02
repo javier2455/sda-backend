@@ -6,6 +6,6 @@ export const getUserRole = async (req, res, next) => {
   if (user.error) {
     return res.status(404).json({ message: [user.message] })
   }
-  req.rol = user.rol
+  req.role = user.role
   next()
 }

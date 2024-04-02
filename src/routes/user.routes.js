@@ -7,35 +7,35 @@ import { roleValidation } from '../middlewares/roleValidation.js'
 export const userRouter = Router()
 
 userRouter.get(
-  '/get_all_users',
+  '/get_all_users/:token',
   authRequired,
   getUserRole,
   roleValidation,
   UserController.getAll
 )
 userRouter.get(
-  '/get_user/:id',
+  '/get_user/:id/:token',
   authRequired,
   getUserRole,
   roleValidation,
   UserController.getById
 )
 userRouter.post(
-  '/create_user',
+  '/create_user/:token',
   authRequired,
   getUserRole,
   roleValidation,
   UserController.create
 )
 userRouter.patch(
-  '/update_user/:id',
+  '/update_user/:id/:token',
   authRequired,
   getUserRole,
   roleValidation,
   UserController.update
 )
 userRouter.delete(
-  '/delete_user/:id',
+  '/delete_user/:id/:token',
   authRequired,
   getUserRole,
   roleValidation,
