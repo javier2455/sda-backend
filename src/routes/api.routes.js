@@ -7,35 +7,35 @@ import { roleValidation } from '../middlewares/roleValidation.js'
 export const apiRouter = Router()
 
 apiRouter.get(
-  '/get_all_apis',
+  '/get_all_apis/:token',
   authRequired,
   getUserRole,
-  roleValidation,
+  // roleValidation,
   ApiController.getAll
 )
 apiRouter.get(
-  '/get_api/:id',
+  '/get_api/:id/:token',
   authRequired,
   getUserRole,
   roleValidation,
   ApiController.getById
 )
 apiRouter.post(
-  '/create_api',
+  '/create_api/:token',
   authRequired,
   getUserRole,
   roleValidation,
   ApiController.create
 )
 apiRouter.patch(
-  '/update_api/:id',
+  '/update_api/:id/:token',
   authRequired,
   getUserRole,
   roleValidation,
   ApiController.update
 )
 apiRouter.delete(
-  '/delete_api/:id',
+  '/delete_api/:id/:token',
   authRequired,
   getUserRole,
   roleValidation,

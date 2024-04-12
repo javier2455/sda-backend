@@ -47,7 +47,11 @@ export class ApiController {
       if (apiCreated.error) {
         res.status(430).json({ message: [apiCreated.message] })
       } else {
-        res.status(201).json({ message: 'Api created', data: apiCreated })
+        res.status(201).json({
+          message: 'API creada',
+          description: 'La API fue creada satisfactoriamente',
+          data: apiCreated
+        })
       }
     } catch (error) {
       console.log(error.message)
@@ -73,7 +77,13 @@ export class ApiController {
       if (apiUpdated.error) {
         return res.status(404).json({ message: [apiUpdated.message] })
       } else {
-        res.status(200).json({ message: 'API UPDATED', data: apiUpdated })
+        res
+          .status(200)
+          .json({
+            message: 'API actualizada',
+            description: 'La API fue actualizada satisfactoriamente',
+            data: apiUpdated
+          })
       }
     } catch (error) {
       res.status(500).json({ message: [error.message] })
@@ -88,7 +98,9 @@ export class ApiController {
         return res.status(404).json({ message: [apiDeleted.message] })
       }
       res.status(200).json({
-        message: 'DELETED SATISFACTORY'
+        message: 'Eliminación completada',
+        description: 'La API se elimino correctamente',
+        data: apiDeleted
       })
     } catch (error) {
       res.status(500).json({ message: [error.message] })
