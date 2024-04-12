@@ -50,7 +50,7 @@ export class UserController {
       } else {
         res.status(201).json({
           message: 'Usuario creado',
-          description: 'EL usuario fue creado satisfactoriamente',
+          description: 'El usuario fue creado satisfactoriamente',
           data: userCreated
         })
       }
